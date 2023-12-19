@@ -6,16 +6,16 @@
     <title>Document</title>
 </head>
 <body>
-    <form method="POST" action= {% url "home"%}>
-    {{ form.as_p}}
-    {% csrf_token %}
-    <input type="submit" value="search">
+    <form action="{% url 'order:search' %}", method="POST">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit">
     </form>
 
     {%if product %}
-    <h1> Products are: </h1>    
-    {{product}}
-    {%endif%} 
+    <h1> {{product}} <h1>
+    {% endif %}
+
 
 </body>
 </html>
