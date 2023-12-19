@@ -6,6 +6,16 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>hello Ersan you are doin great</h1>
+    <form method="POST" action= {% url "home"%}>
+    {{ form.as_p}}
+    {% csrf_token %}
+    <input type="submit" value="search">
+    </form>
+
+    {%if product %}
+    <h1> Products are: </h1>    
+    {{product}}
+    {%endif%} 
+
 </body>
 </html>
