@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import unit, developer , powder , waste , box, head , empty , chip , toner,brand, currency,mainCategory,category,provider
+from .models import unit, developer , powder , waste , box, head , empty , chip , toner,brand, currency,mainCategory,category,provider,location,taxOffice,customer
 # Register your models here.
 admin.site.register(unit)
 admin.site.register(developer)
@@ -15,3 +15,8 @@ admin.site.register(brand)
 admin.site.register(mainCategory)
 admin.site.register(category)
 admin.site.register(provider)
+admin.site.register(location)
+admin.site.register(taxOffice)
+admin.site.register(customer)
+
+

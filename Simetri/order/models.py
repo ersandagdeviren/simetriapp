@@ -1,6 +1,19 @@
 from django.db import models
 
 # Create your models here.
+class location (models.Model):
+    country=models.CharField(max_length=15)
+    city=models.CharField(max_length=15)
+    district=models.CharField(max_length=15)
+    def __str__(self):
+        return self.city
+    
+class taxOffice (models.Model):
+    taxOffice=models.CharField(max_length=15)
+    city=models.ForeignKey(location, on_delete=models.CASCADE,related_name="taxoffice_city")
+    def __str__(self):
+        return self.city
+    
 class currency (models.Model):
     currency=models.CharField(max_length=5)
     rate=models.DecimalField(max_digits=10,decimal_places=2,blank=True,default=0.0)
@@ -192,7 +205,28 @@ class toner (models.Model):
     def __str__(self):
         return self.code
 
+class customer (models.Model):
 
+    tax_number=models.CharField(max_length=50,blank=True)
+    customerCode=models.CharField(max_length=50)
+    companyName=models.CharField(max_length=50)
+    name=models.CharField(max_length=50,blank=True)
+    middleName=models.CharField(max_length=50,blank=True)
+    surname=models.CharField(max_length=50,blank=True)
+    city=models.ForeignKey(taxOffice, on_delete=models.CASCADE, related_name="customer_city")
+    taxOffice=models.ForeignKey(taxOffice, on_delete=models.CASCADE,blank=True, related_name="customer_taxOffice")
+    customerType=models.CharField(max_length=50,blank=True)
+    adresName=models.CharField(max_length=50,blank=True)
+    contactPerson=models.CharField(max_length=50,blank=True)
+    coutry=models.ForeignKey(location, on_delete=models.CASCADE, related_name="customer_country")
+    city=models.ForeignKey(location, on_delete=models.CASCADE, related_name="customer_tcity")
+    district=models.ForeignKey(location, on_delete=models.CASCADE, related_name="customer_district")
+    email=models.EmailField(blank=True)
+    telephone=models.CharField(max_length=11,blank=True)
+    adress=models.CharField(max_length=100,blank=True)
+
+    def __str__(self):
+        return self.companyName
 
 
 
