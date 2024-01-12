@@ -2,17 +2,16 @@ from django.db import models
 
 # Create your models here.
 class location (models.Model):
-    country=models.CharField(max_length=15)
     city=models.CharField(max_length=15)
-    district=models.CharField(max_length=15)
+    country=models.CharField(max_length=15)
     def __str__(self):
         return self.city
     
 class taxOffice (models.Model):
+    city=models.CharField(max_length=15)
     taxOffice=models.CharField(max_length=15)
-    city=models.ForeignKey(location, on_delete=models.CASCADE,related_name="taxoffice_city")
     def __str__(self):
-        return self.city
+        return self.taxOffice
     
 class currency (models.Model):
     currency=models.CharField(max_length=5)
